@@ -1,0 +1,14 @@
+.tmp
+
+dist/
+
+node_modules/
+
+.idea/*
+
+allure-results/
+
+*.html
+
+
+
