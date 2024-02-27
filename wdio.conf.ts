@@ -1,6 +1,7 @@
-
-import type { Options } from '@wdio/types'
-
+import type {Options} from '@wdio/types'
+import {removeSync} from "fs-extra";
+// @ts-ignore
+import {generate} from "multiple-cucumber-html-reporter";
 
 
 export const config: Options.Testrunner = {
@@ -57,7 +58,7 @@ export const config: Options.Testrunner = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 1,
+    maxInstances: 2,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -67,8 +68,8 @@ export const config: Options.Testrunner = {
         maxInstances: 1,
         browserName: 'chrome',
         acceptInsecureCerts: true,
-        "goog:chromeOptions":{
-            args:[
+        "goog:chromeOptions": {
+            args: [
                 '--headless',
                 '--disable-gpu',
                 '--disable-dev-shm-usage',
@@ -147,7 +148,7 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}], 'cucumberjs-json'],
+    reporters: ['spec', ['allure', {outputDir: 'allure-results'}], ['cucumberjs-json', {outputDir: '.tmp/report'}]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
@@ -190,8 +191,9 @@ export const config: Options.Testrunner = {
      * Gets executed once before all workers get launched.
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    //onPrepare: function (_config, _capabilities){
-   // },
+    onPrepare: function (config, capabilities) {
+        removeSync('./tmp');
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -332,25 +334,29 @@ export const config: Options.Testrunner = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    //onComplete: function(_exitCode, _config, _capabilities, _results) {
-    //},
+    onComplete: function (exitCode, config, capabilities, results) {
+        generate({
+            jsonDir: './tmp/json',
+            reportPath: './tmp/report'
+        });
+    },
     /**
-    * Gets executed when a refresh happens.
-    * @param {string} oldSessionId session ID of the old session
-    * @param {string} newSessionId session ID of the new session
-    */
+     * Gets executed when a refresh happens.
+     * @param {string} oldSessionId session ID of the old session
+     * @param {string} newSessionId session ID of the new session
+     */
     // onReload: function(oldSessionId, newSessionId) {
     // }
     /**
-    * Hook that gets executed before a WebdriverIO assertion happens.
-    * @param {object} params information about the assertion to be executed
-    */
+     * Hook that gets executed before a WebdriverIO assertion happens.
+     * @param {object} params information about the assertion to be executed
+     */
     // beforeAssertion: function(params) {
     // }
     /**
-    * Hook that gets executed after a WebdriverIO assertion happened.
-    * @param {object} params information about the assertion that was executed, including its results
-    */
+     * Hook that gets executed after a WebdriverIO assertion happened.
+     * @param {object} params information about the assertion that was executed, including its results
+     */
     // afterAssertion: function(params) {
     // }
 }
