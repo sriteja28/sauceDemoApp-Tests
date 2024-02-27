@@ -1,7 +1,4 @@
 import type {Options} from '@wdio/types'
-import {removeSync} from "fs-extra";
-// @ts-ignore
-import {generate} from "multiple-cucumber-html-reporter";
 
 
 export const config: Options.Testrunner = {
@@ -148,7 +145,7 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec', ['allure', {outputDir: 'allure-results'}], ['cucumberjs-json', {outputDir: '.tmp/report'}]],
+    reporters: ['spec', ['allure', {outputDir: 'allure-results'}]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
@@ -191,9 +188,8 @@ export const config: Options.Testrunner = {
      * Gets executed once before all workers get launched.
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    onPrepare: function (config, capabilities) {
-        removeSync('./tmp');
-    },
+    //onPrepare: function (config, capabilities) {
+    // },
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -334,12 +330,12 @@ export const config: Options.Testrunner = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    onComplete: function (exitCode, config, capabilities, results) {
-        generate({
-            jsonDir: './tmp/json',
-            reportPath: './tmp/report'
-        });
-    },
+    /* onComplete: function (exitCode, config, capabilities, results) {
+         generate({
+             jsonDir: './tmp/json',
+             reportPath: './tmp/report'
+         });
+     },*/
     /**
      * Gets executed when a refresh happens.
      * @param {string} oldSessionId session ID of the old session
