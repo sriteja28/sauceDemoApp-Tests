@@ -41,7 +41,7 @@ jobs:
         run: npm run wdio:purchase
 
       - name: Generate Allure report
-        run: npx allure generate --clean allure-results
+        run: npx allure generate --single-file --clean allure-results
         shell: bash
 
       - name: Upload Allure results as artifact
@@ -49,5 +49,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
-          path: allure-results
+          path: allure-report
 
