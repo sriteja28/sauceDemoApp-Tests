@@ -38,10 +38,9 @@ jobs:
 
       - name: Run tests in Chrome
         run: npm run wdio:purchase
-          mkdir -p allure-results
-          cp -r ./allure-report/* allure-results/
 
-        continue-on-error: true
+      - name: Generate Allure report
+        run: npx allure generate --clean allure-results
 
       - name: Upload Allure results as artifact
         if: ${{ success() }}
@@ -49,16 +48,4 @@ jobs:
         with:
           name: allure-results
           path: allure-results
-
-  generate-report:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download Allure results artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
-
 
