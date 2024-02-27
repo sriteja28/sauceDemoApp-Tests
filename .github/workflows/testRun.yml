@@ -61,7 +61,4 @@ jobs:
           name: allure-results
           path: allure-results
 
-      - name: Generate Allure report
-        run: npx allure generate --clean allure-results && npx allure open
-
 
