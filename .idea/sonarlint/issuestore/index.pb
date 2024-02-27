@@ -31,3 +31,26 @@ X
 (src/support/check/checkElementPresent.ts,c/9/c957537aab2b332e2c206cda8edda364d0fa27df
 <
 wdio.conf.ts,e/8/e8a07a646da987ed99e5d1b0d70352704dded060
+O
+src/support/check/checkTitle.ts,7/7/77a68602dacd32888a05c1a603bd956f7f94d96b
+N
+features/login-feature.feature,0/9/0975ffe159c03e491f302c26b686213d9f703d8b
+>
+.gitignore.txt,2/f/2fec9aef0e3f00490b19ac15f648af576a3dcd0e
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+A
+package-lock.json,f/a/fa288d1472d29beccb489a676f68739ad365fc47
+I
+features/purchase.feature,2/b/2bf083dd5fc8ea299d3916e1bb570ef41da2d971
+Q
+!src/support/action/clickbutton.ts,c/b/cb6b53908cb4b45adec37f43df25e87727650a8c
+R
+"src/support/action/clickElement.ts,3/e/3e71473402e7bcd0c3c86be2f83feca6b7f49d8c
+T
+$src/support/action/pauseExecution.ts,9/9/997593ac09f3ef5435adfdcef5746ffe1f533406
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0

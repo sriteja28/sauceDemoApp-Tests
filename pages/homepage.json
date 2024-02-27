@@ -1,0 +1,8 @@
+{
+  "username": "//input[@id='user-name']",
+  "password": "//input[@id='password']",
+  "login-button": "//input[@id='login-button']",
+  "read-usernames": "//*[@id='login_credentials']/h4[text()='Accepted usernames are:']/following-sibling::text()[2]"
+}
+
+

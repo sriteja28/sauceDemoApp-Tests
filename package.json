@@ -3,10 +3,9 @@
   "author": "AlekyaManepalli",
   "version": "0.1.0",
   "description": "SauceDemoApp automation using webdriveIO and cucumber using Typescript",
-  "type": "module",
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts",
-    "wdio:sample": "wdio run ./wdio.conf.ts --cucumberOpts.tags='@sample'"
+    "wdio:purchase": "wdio run ./wdio.conf.ts --cucumberOpts.tags='@purchase'"
   },
   "devDependencies": {
     "@testing-library/webdriverio": "^3.2.1",
