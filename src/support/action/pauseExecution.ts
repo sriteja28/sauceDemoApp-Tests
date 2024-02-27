@@ -1,4 +1,4 @@
-export default async (waitInMs: number) => {
+export default async (waitInMs: string) => {
     console.log(`execution paused for ${waitInMs}`)
-    await browser.pause(waitInMs);
+    await browser.pause(parseInt(waitInMs));
 }
