@@ -10,10 +10,11 @@ on:
   pull_request:
     branches: [ "main" ]
   fork:
-    branches: ["main"]
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,11 +28,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-        env:
-           GH_USER_TOKEN: ${{ secrets.GH_USER_TOKEN }}
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests in Chrome
+        run: npm run wdio:sample
