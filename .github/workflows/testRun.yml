@@ -36,13 +36,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests in Chrome
-        run: npm run wdio:purchase
+      - name: Run tests in Chrome and generate Allure report
+        run: |
+          npm run wdio:purchase
           npx allure generate --clean -o allure-results
           npx allure open
 
-      - name: Upload Allure report artifact
-        uses: actions/upload-artifact@v4
+      - name: Deploy Allure report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: allure-report
-          path: allure-results
+          github_token: ${{ secrets.GH_USER_TOKEN }}
+          publish_dir: ./allure-results
